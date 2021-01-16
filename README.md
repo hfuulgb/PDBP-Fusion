@@ -1,1 +1,1 @@
-# PDBP-Fusion:Prediction of DNA binding protein using local feature and long-term dependence with primary sequence based on deep learning
+# Prediction of DNA binding proteins using local features and long-term dependencies with primary sequences based on deep learning
