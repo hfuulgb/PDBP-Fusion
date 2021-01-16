@@ -9,8 +9,8 @@ class Pred():
         self.item_model_path = model_path + str(0) + '.hdf5'
         #self.model = load_model(item_model_path)
 
-    def sample_predict(self,string,str_len=600):
-        #判断字符串截断或补‘Z’
+    def sample_predict(self,string,str_len=850):
+        # make sure the input sequnce less than 850, otherwise drop string when length excell 850
         if len(string)>=str_len:
             string=string[:str_len]
         else:
@@ -23,18 +23,13 @@ class Pred():
         string_vector=get_seq_concolutional_array(string)
         string_vector=np.expand_dims(string_vector,0)
 
-        #读取模型和预测
+        #load model and predict
         result=[]
         self.model = load_model(self.item_model_path)
         predict=self.model.predict(string_vector)[0]
-        print('模型的预测结果为{}'.format(predict))
+        print('prediction is {}'.format(predict))
         result.append(predict)
         print(result)
-
-        #集成学习(表决)
-        # vote_result=np.argmax(result,axis=1)
-        # vote_result=int(np.round(np.mean(vote_result)))
-        # print('该序列的集成学习结果为：',vote_result)
 
         return result
 
